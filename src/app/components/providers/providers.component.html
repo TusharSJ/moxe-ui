@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="header">
+        <div class="header-text">Providers</div>
+        <button mat-raised-button color="primary" (click)="newProvider()">New Provider</button>
+    </div>
+
+    <table mat-table [dataSource]="providers" *ngIf="providers.length; else noProviders">
+            
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Provider </th>
+        <td mat-cell *matCellDef="let provider"> <a [routerLink]="['/provider', provider.id]">{{provider.name | titlecase}}</a> </td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="specialty">
+        <th mat-header-cell *matHeaderCellDef> Specialty </th>
+        <td mat-cell *matCellDef="let provider"> {{provider.specialty | titlecase}} </td>
+        </ng-container>
+
+        <!-- Edit Column -->
+        <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let provider"> <mat-icon (click)="updateProvider(provider)">edit</mat-icon> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <ng-template #noProviders>
+        <div>Providers have not been assigned to this hospital yet</div>
+    </ng-template>
+</div>

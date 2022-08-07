@@ -1,0 +1,6 @@
+<div class="container" *ngIf="hospital">
+    <div class="title">Hospital: 
+        <span>{{hospital.name | titlecase}}</span>
+    </div>
+    <providers [hospitalId]="hospital.id!"></providers>
+  </div>

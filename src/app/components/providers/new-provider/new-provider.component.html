@@ -1,0 +1,24 @@
+<div class="title" mat-dialog-title>New Provider</div>
+
+<mat-dialog-content>
+    <form [formGroup]="formGroup">
+        <mat-form-field>
+            <mat-label>Provider Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter Provider Name">
+            <mat-error *ngIf="!formGroup.controls['name'].hasError('required')">
+            Provider Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Specialty</mat-label>
+            <input matInput formControlName="specialty" placeholder="Enter specialty">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" 
+            [mat-dialog-close]="formGroup.value" 
+            [disabled]="!formGroup.valid">Save</button>
+    <button mat-raised-button color="secondary" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+

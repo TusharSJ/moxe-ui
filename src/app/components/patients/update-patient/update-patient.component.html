@@ -1,0 +1,35 @@
+<div class="title" mat-dialog-title>Update Patient</div>
+
+<mat-dialog-content>
+    <form [formGroup]="formGroup">
+        <mat-form-field>
+            <mat-label>Patient Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter Patient Name">
+            <mat-error *ngIf="!formGroup.controls['name'].hasError('required')">
+                Patient Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Sex</mat-label>
+            <mat-select formControlName="sex">
+                <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" 
+            [mat-dialog-close]="formGroup.value" 
+            [disabled]="!formGroup.valid">Save</button>
+    <button mat-raised-button color="secondary" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+
